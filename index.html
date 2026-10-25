@@ -157,7 +157,7 @@ form{display:grid;gap:1.5rem}
 label{font:500 .7rem var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
 input,textarea{display:block;width:100%;margin-top:.5rem;background:transparent;border:0;border-bottom:1px solid #4a463d;color:var(--white);padding:.8rem 0;font:400 1rem var(--sans);transition:.3s}
 input:focus,textarea:focus{outline:0;border-color:var(--gold)}
-input.bad,textarea.bad{border-color:#b5483c}
+input.bad,textarea.bad{border-color:#e6cf9c}
 #formMsg,#reviewMsg{margin:0;min-height:1.5rem;color:var(--gold)}
 .review{padding:2rem 0;border-bottom:1px solid var(--line)}
 .review p{margin:.6rem 0;color:var(--white)}.review small{color:var(--muted)}
@@ -215,6 +215,191 @@ body.cart-open #overlay{opacity:1;pointer-events:auto}
   .hero-scissors{right:50%;transform:translate(50%,-50%) rotate(-16deg);width:80vw;opacity:.3}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.photo.reveal img{clip-path:none;transform:none}}
+
+/* Meer leven, duidelijkere meldingen, kleurvariatie (smaragd en bordeaux naast goud) */
+:root{--muted:#cdc8be;--soft:#a39e94;--gold:#d2b374;--emerald:#c9a96a;--emerald-l:#e6cf9c;--bord:#c9a96a;--bord-l:#e6cf9c}
+nav a{color:#dcd7cc}
+.hero h1 .l2{background-image:linear-gradient(100deg,#cfcabe 35%,#f1dca8 50%,#cfcabe 65%)}
+.hero-scissors{right:-3%;opacity:.4}
+.hero::after{content:"";position:absolute;inset:-20%;z-index:0;filter:blur(40px);animation:drift 20s ease-in-out infinite alternate;
+  background:radial-gradient(38% 38% at 18% 32%,rgba(201,169,106,.16),transparent 70%),radial-gradient(34% 34% at 84% 22%,rgba(201,169,106,.16),transparent 70%),radial-gradient(40% 40% at 62% 90%,rgba(201,169,106,.15),transparent 70%)}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(380px circle at var(--mx,50%) var(--my,45%),rgba(210,179,116,.14),transparent 65%)}
+@keyframes drift{to{transform:translate3d(4%,-3%,0) scale(1.1)}}
+#dust{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.usp>.wrap>div:nth-child(2) b::before{background:var(--emerald-l)}.usp>.wrap>div:nth-child(3) b::before{background:var(--bord-l)}
+
+/* Producten */
+.card .img,.card h3{cursor:pointer}.card h3{transition:color .3s}.card h3:hover{color:var(--gold)}
+.card .img::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .4s;background:radial-gradient(240px circle at var(--gx,50%) var(--gy,50%),rgba(210,179,116,.18),transparent 70%)}
+.card:hover .img::before{opacity:1}
+.card .img svg{position:relative;z-index:2}
+.card:nth-child(3n+2) .img{background:radial-gradient(circle at 50% 45%,#1e1a10,#0f0e0c 72%)}
+.card:nth-child(3n) .img{background:radial-gradient(circle at 50% 45%,#1e1a10,#0f0e0c 72%)}
+.card:nth-child(3n+2):hover .img{border-color:var(--emerald)}.card:nth-child(3n):hover .img{border-color:var(--bord)}
+.tag.new{border-color:var(--emerald-l);color:var(--emerald-l)}
+.tag.ltd,.tag.sale{border-color:var(--bord-l);color:var(--bord-l)}
+.add.done{color:var(--emerald-l);border-color:var(--emerald-l)}
+.steps article:nth-child(2),.feats article:nth-child(3n+2),.cards article:nth-child(3n+2){--c:var(--emerald-l)}
+.steps article:nth-child(3),.feats article:nth-child(3n),.cards article:nth-child(3n){--c:var(--bord-l)}
+.steps article:nth-child(2) span,.steps article:nth-child(3) span,.feats article:nth-child(3n+2) h3,.feats article:nth-child(3n) h3{color:var(--c)}
+.steps article:hover,.cards article:hover,.feats article:hover{border-top-color:var(--c,var(--gold))}
+.principle:nth-child(2) span{color:var(--emerald-l)}.principle:nth-child(3) span{color:var(--bord-l)}
+.compare th{color:var(--gold)}
+
+/* Duidelijke meldingen */
+#toast{background:#14130f;color:var(--white);border:1px solid var(--line);border-left:4px solid var(--gold);padding:1rem 1.2rem;display:flex;align-items:center;gap:1rem;max-width:min(560px,92vw);width:max-content;box-shadow:0 20px 50px rgba(0,0,0,.6);font-size:.95rem;font-weight:400;line-height:1.5}
+#toast.show{pointer-events:auto}
+#toast i{flex:none;width:1.7rem;height:1.7rem;border-radius:50%;display:grid;place-items:center;font:700 .85rem var(--sans);background:var(--gold);color:#0a0a0a}
+#toast.ok{border-left-color:var(--emerald)}#toast.ok i{background:var(--emerald);color:#fff}
+#toast.err{border-left-color:var(--bord)}#toast.err i{background:var(--bord);color:#fff}
+#toast button{flex:none;background:none;border:0;border-bottom:1px solid var(--gold);color:var(--gold);cursor:pointer;font:500 .7rem var(--sans);letter-spacing:.2em;text-transform:uppercase;padding:.2rem 0}
+#formMsg,#reviewMsg{color:var(--white);min-height:0}
+.msg{margin:0;padding:1rem 1.2rem;border-left:3px solid var(--gold);font-size:.95rem;line-height:1.6}
+.msg:empty{display:none}
+#formMsg.ok,#reviewMsg.ok{border-color:var(--emerald);background:rgba(201,169,106,.14);color:#f1dca8}
+#formMsg.err,#reviewMsg.err{border-color:var(--bord);background:rgba(201,169,106,.16);color:#f1dca8}
+.ferr{display:block;color:var(--bord-l);font:400 .84rem/1.5 var(--sans);letter-spacing:0;text-transform:none;margin-top:.4rem}
+input.bad,textarea.bad{border-bottom-color:var(--bord-l)}
+.ship{display:block;text-align:center;color:var(--emerald-l);font-size:.84rem;margin-bottom:1rem}
+#cartItems .empty .btn{margin-top:1.2rem}
+#cartCount.bump{display:inline-block;animation:bump .5s}
+@keyframes bump{40%{transform:scale(1.7)}}
+
+/* Productdetails */
+#modal{position:fixed;inset:0;z-index:150;display:grid;place-items:center;padding:1.5rem;background:rgba(0,0,0,.78);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .3s}
+#modal.open{opacity:1;pointer-events:auto}
+.m-box{position:relative;display:grid;grid-template-columns:1fr 1fr;width:min(900px,100%);max-height:92vh;overflow:auto;background:var(--panel);border:1px solid var(--gold-d);transform:translateY(20px) scale(.98);transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+#modal.open .m-box{transform:none}
+.m-img{background:radial-gradient(circle at 50% 45%,#262012,#0f0e0c 72%);display:grid;place-items:center;min-height:360px}
+.m-img svg{width:50%;aspect-ratio:1;color:var(--gold);transform:rotate(12deg)}
+.m-info{padding:3rem 2.5rem}
+.m-info h3{font-size:2.2rem;margin-bottom:1rem}
+#mSpecs{margin:1.5rem 0;border-top:1px solid var(--line)}
+#mSpecs div{display:flex;justify-content:space-between;gap:1rem;padding:.8rem 0;border-bottom:1px solid var(--line);font-size:.92rem}
+#mSpecs dt{color:var(--gold);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase}
+.m-row{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:1.5rem}
+.m-row b{font:400 1.8rem var(--serif);color:var(--gold)}
+.m-close{position:absolute;top:.8rem;right:1rem;z-index:2;background:none;border:0;color:var(--white);font-size:2rem;cursor:pointer}
+@media(max-width:700px){.m-box{grid-template-columns:1fr}.m-img{min-height:220px}.m-info{padding:2rem 1.5rem}}
+
+/* Cursor-ring */
+#cursor{position:fixed;left:0;top:0;width:34px;height:34px;border:1px solid var(--gold);border-radius:50%;pointer-events:none;z-index:300;opacity:0;transition:width .3s,height .3s,background .3s,opacity .3s}
+#cursor.on{opacity:.75}
+#cursor.hover{width:62px;height:62px;background:rgba(210,179,116,.12)}
+@media(max-width:900px){.hero-scissors{right:50%;opacity:.28}}
+
+/* Helderder en levendiger */
+:root{--muted:#cbc6bc;--soft:#a9a498;--ok:#e6cf9c;--err:#f1dca8}
+h1,h2{font-weight:400}
+.hero h1 .l2{font-weight:400}
+.hero .lead{color:#e0dbd1}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(520px circle at var(--mx,50%) var(--my,40%),rgba(201,169,106,.11),transparent 62%)}
+#dust{position:absolute;inset:0;z-index:1;pointer-events:none}
+.page:not([hidden]){animation:pageIn .9s cubic-bezier(.2,.7,.2,1)}
+@keyframes pageIn{from{opacity:0;transform:translateY(16px)}}
+.btn{transition:background .4s,color .4s,transform .25s}
+
+/* Producten */
+.card .img{cursor:pointer}
+.card .img::before{content:"";position:absolute;inset:0;background:radial-gradient(260px circle at var(--gx,50%) var(--gy,50%),rgba(201,169,106,.24),transparent 65%);opacity:0;transition:opacity .4s}
+.card:hover .img::before{opacity:1}
+.card .img::after{content:"Snelle weergave";position:absolute;left:0;right:0;bottom:1.3rem;text-align:center;font:500 .62rem var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--gold);opacity:0;transform:translateY(8px);transition:.4s}
+.card:hover .img::after{opacity:1;transform:none}
+.card h3{cursor:pointer;transition:color .3s}.card h3:hover{color:var(--gold)}
+.tag.new{background:var(--gold);color:#0a0a0a}
+.tag.ltd{border-color:#ecd8a6;color:#ecd8a6}
+.tag.sale{background:var(--err);border-color:var(--err);color:#0a0a0a}
+.add.done{color:var(--ok);border-color:var(--ok)}
+#cartCount{display:inline-block}
+#cartCount.bump{animation:bump .5s}
+@keyframes bump{40%{transform:scale(1.7)}}
+.fly{position:fixed;width:14px;height:14px;margin:-7px;border-radius:50%;background:var(--gold);box-shadow:0 0 22px var(--gold);z-index:250;pointer-events:none}
+
+/* Duidelijke meldingen */
+#toast{display:flex;align-items:center;gap:.9rem;width:max-content;max-width:min(92vw,540px);background:#171512;color:var(--white);border:1px solid var(--gold-d);border-left:3px solid var(--gold);padding:1rem 1.3rem;font-size:.94rem;font-weight:400;line-height:1.5;box-shadow:0 24px 60px rgba(0,0,0,.7)}
+#toast.show{pointer-events:auto}
+#toast.ok{border-left-color:var(--ok)}#toast.err{border-left-color:var(--err)}
+#toast i{flex:none;width:1.7rem;height:1.7rem;border-radius:50%;display:grid;place-items:center;font:600 .85rem var(--sans);font-style:normal;background:var(--gold);color:#0a0a0a}
+#toast.ok i{background:var(--ok)}#toast.err i{background:var(--err)}
+#toast button{flex:none;background:none;border:0;border-bottom:1px solid var(--gold);color:var(--gold);font:500 .7rem var(--sans);letter-spacing:.2em;text-transform:uppercase;cursor:pointer;padding:.2rem 0}
+#formMsg,#reviewMsg{min-height:0}
+.msg{margin:0}
+.msg.ok,.msg.err{padding:1rem 1.2rem;border:1px solid;font-size:.94rem;line-height:1.6;color:var(--white)}
+.msg.ok{border-color:var(--ok);background:rgba(201,169,106,.08)}
+.msg.err{border-color:var(--err);background:rgba(201,169,106,.08)}
+.msg.ok::before{content:"✓  ";color:var(--ok);font-weight:600}
+.msg.err::before{content:"!  ";color:var(--err);font-weight:700}
+.ferr{display:block;margin-top:.5rem;color:var(--err);font:400 .86rem/1.5 var(--sans);letter-spacing:0;text-transform:none}
+input.bad,textarea.bad{border-bottom-color:var(--err)}
+.ship{display:block;text-align:center;font-size:.8rem;color:var(--ok);margin-bottom:1rem}
+#cartItems .empty{text-align:center;margin-top:4rem}
+#cartItems .empty p{margin-bottom:1.5rem}
+.item b{font-weight:500}
+
+/* Snelle weergave */
+#modal{position:fixed;inset:0;z-index:150;display:grid;place-items:center;padding:1.5rem;background:rgba(0,0,0,.8);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .35s}
+#modal.open{opacity:1;pointer-events:auto}
+.m-box{position:relative;display:grid;grid-template-columns:1fr 1fr;width:min(920px,100%);max-height:92vh;overflow:auto;background:var(--panel);border:1px solid var(--gold-d);transform:translateY(24px) scale(.98);transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+#modal.open .m-box{transform:none}
+.m-close{position:absolute;top:.8rem;right:1rem;z-index:2;background:none;border:0;color:var(--white);font-size:2rem;cursor:pointer;line-height:1}
+.m-close:hover{color:var(--gold)}
+.m-img{display:grid;place-items:center;min-height:340px;background:radial-gradient(circle at 50% 45%,#1e1a10,#0f0e0c 72%)}
+.m-img svg{width:50%;aspect-ratio:1;color:var(--gold);transform:rotate(12deg)}
+.m-info{padding:3rem 2.5rem;display:flex;flex-direction:column;justify-content:center}
+.m-info h3{font-size:2.2rem;margin-bottom:1rem}
+#mSpecs{margin:1rem 0 1.8rem}
+#mSpecs div{display:flex;justify-content:space-between;gap:1rem;padding:.7rem 0;border-bottom:1px solid var(--line)}
+#mSpecs dt{color:var(--gold);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase}
+#mSpecs dd{text-align:right;font-size:.92rem}
+.m-row{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.m-row b{font:400 1.8rem var(--serif);color:var(--gold)}
+@media(max-width:700px){.m-box{grid-template-columns:1fr}.m-img{min-height:220px}.m-info{padding:2rem 1.5rem}}
+
+/* Cursor */
+#cursor{position:fixed;top:0;left:0;width:34px;height:34px;border:1px solid var(--gold);border-radius:50%;pointer-events:none;z-index:300;opacity:0;transition:opacity .3s,width .3s,height .3s,background .3s}
+#cursor.on{opacity:.85}
+#cursor.hover{width:64px;height:64px;background:rgba(201,169,106,.13)}
+@media(pointer:coarse){#cursor{display:none}}
+
+/* Keuzehulp */
+.quiz{margin-top:4rem;max-width:760px;padding:3rem;border:1px solid var(--line);background:linear-gradient(180deg,#15130e,#0e0d0b);min-height:300px;transition:border-color .4s}
+.quiz:hover{border-color:var(--gold-d)}
+.quiz .qs{animation:pageIn .6s cubic-bezier(.2,.7,.2,1)}
+.q-step{font:500 .72rem var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.quiz h3{font-size:2rem;margin-bottom:1.5rem}
+.q-opts{display:grid;gap:.8rem}
+.q-opts button{text-align:left;background:none;border:1px solid var(--line);color:var(--white);padding:1.1rem 1.4rem;font:400 1rem var(--sans);cursor:pointer;transition:.3s}
+.q-opts button:hover{border-color:var(--gold);color:var(--gold);padding-left:2rem}
+.q-res{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;margin-top:1.5rem}
+.q-res b{font:400 1.8rem var(--serif);color:var(--gold)}
+.add.q-add{border:1px solid var(--gold);color:var(--gold);padding:1rem 2.2rem}
+.add.q-add:hover{background:var(--gold);color:#0a0a0a}
+.q-again{background:none;border:0;border-bottom:1px solid var(--soft);color:var(--muted);cursor:pointer;font:400 .74rem var(--sans);letter-spacing:.2em;text-transform:uppercase}
+.q-note{color:var(--soft);font-size:.92rem}
+@media(max-width:700px){.quiz{padding:2rem 1.5rem}}
+
+/* Alleen goud: duidelijke meldingen zonder groen of roze */
+#toast.ok i,#toast.err i{color:#0a0a0a}
+.tag.sale{color:#0a0a0a}
+
+/* Kleine animaties */
+.eyebrow::before{transition:width 1s .35s cubic-bezier(.2,.7,.2,1)}
+.reveal:not(.in) .eyebrow::before,.eyebrow.reveal:not(.in)::before{width:0}
+.usp b::before{transition:width .9s .3s cubic-bezier(.2,.7,.2,1)}
+.usp .reveal:not(.in) b::before{width:0}
+.btn{position:relative;overflow:hidden}
+.btn::before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.28) 50%,transparent 70%);transform:translateX(-120%)}
+.btn:hover::before{transform:translateX(120%);transition:transform .8s}
+.card .row{position:relative}
+.card .row::after{content:"";position:absolute;left:0;top:-1px;width:100%;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:0 50%;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.card:hover .row::after{transform:none}
+.page-title::after{content:"";display:block;width:0;height:1px;background:var(--gold);margin-top:2.2rem;animation:lineDraw 1.2s .5s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes lineDraw{to{width:4.5rem}}
+.logo{transition:letter-spacing .6s cubic-bezier(.2,.7,.2,1),color .4s}
+.logo:hover{letter-spacing:.72em;color:var(--gold)}
+#stars button{transition:transform .2s,color .2s}#stars button:hover{transform:scale(1.25)}
+.item{animation:pageIn .5s cubic-bezier(.2,.7,.2,1)}
+.principle span{transition:transform .5s cubic-bezier(.2,.7,.2,1)}.principle:hover span{transform:translateX(.6rem)}
 </style>
 </head>
 <body>
@@ -446,6 +631,14 @@ body.cart-open #overlay{opacity:1;pointer-events:auto}
 
 <section>
   <div class="wrap">
+    <p class="eyebrow reveal">Persoonlijk advies</p>
+    <h2 class="reveal">Welke JAEGER past bij jou?</h2>
+    <div id="quiz" class="quiz reveal"></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
     <p class="eyebrow reveal">Vergelijking</p>
     <h2 class="reveal">Onze knipscharen naast elkaar</h2>
     <div class="table-wrap reveal"><table class="compare"><thead><tr><th>Model</th><th>Geschikt voor</th><th>Prijs</th></tr></thead><tbody id="compareBody"></tbody></table></div>
@@ -547,14 +740,15 @@ document.body.insertAdjacentHTML('beforeend', `
   <div id="cartItems"></div>
   <div class="cart-foot">
     <div class="total"><span>Totaal (incl. btw)</span><b id="cartTotal">€ 0,00</b></div>
+    <span class="ship">✓ Gratis verzending · Veilig betalen met iDEAL</span>
     <button class="btn" id="checkout">Afrekenen met iDEAL</button>
   </div>
 </aside>
-<div id="toast"></div>`);
+<div id="toast" role="status" aria-live="polite"></div>`);
 
 /* ---------- Productdata ---------- */
 const products = [
-  {id:1, name:'JAEGER Classic 6.0"', cat:'Knipschaar', price:289, tag:'Bestseller', desc:'Offset handvat, VG10-staal en een vlijmscherpe convexe snede. De standaard voor dagelijks gebruik.'},
+  {id:1, name:'JAEGER Classic 6.0"', cat:'Knipschaar', price:289, tag:'Bestseller', desc:'Offset handvat, VG-10-staal en een vlijmscherpe convexe snede. De standaard voor dagelijks gebruik.'},
   {id:2, name:'JAEGER Master 5.5"', cat:'Knipschaar', price:349, tag:'Nieuw', desc:'Compact en extreem gebalanceerd. Ideaal voor precisiewerk en detailsnedes.'},
   {id:3, name:'JAEGER Gold Edition 6.5"', cat:'Knipschaar', price:489, tag:'Limited', desc:'Gepolijst VG-10-staal met gouden titanium coating en handgraveerd logo.'},
   {id:4, name:'JAEGER Texturizer 30T', cat:'Effileerschaar', price:259, tag:'', desc:'30 tanden voor zachte overgangen en natuurlijke textuur zonder trekken.'},
@@ -575,8 +769,8 @@ const cats = ['Alles', ...new Set(products.map(p => p.cat))];
 filters.innerHTML = cats.map((c, i) => `<button class="${i ? '' : 'on'}" data-cat="${c}">${c}</button>`).join('');
 
 const cardHTML = p => `
-    <article class="card reveal">
-      <div class="img">${p.tag ? `<span class="tag">${p.tag}</span>` : ''}<svg><use href="#scissors"/></svg></div>
+    <article class="card reveal" data-id="${p.id}">
+      <div class="img" role="button" tabindex="0" aria-label="Bekijk ${p.name}">${p.tag ? `<span class="tag ${({'Nieuw': 'new', 'Limited': 'ltd', '-10%': 'sale'})[p.tag] || ''}">${p.tag}</span>` : ''}<svg><use href="#scissors"/></svg></div>
       <div class="body">
         <small class="eyebrow">${p.cat}</small>
         <h3>${p.name}</h3>
@@ -611,7 +805,7 @@ function saveCart() { try { localStorage.setItem('jaegerCart', JSON.stringify(ca
 
 function renderCart() {
   const box = $('#cartItems');
-  if (!cart.length) box.innerHTML = '<p class="empty">Je winkelwagen is nog leeg.</p>';
+  if (!cart.length) box.innerHTML = '<div class="empty"><p>Je winkelwagen is nog leeg.</p><a href="#/collectie" class="btn">Ontdek de collectie</a></div>';
   else box.innerHTML = cart.map(i => {
     const p = products.find(x => x.id === i.id);
     return `<div class="item"><div><b>${p.name}</b><br><small>${euro(p.price)}</small>
@@ -629,17 +823,27 @@ function changeQty(id, d) {
   if (!item) { if (d > 0) cart.push({id, qty: 1}); }
   else { item.qty += d; if (item.qty <= 0) cart = cart.filter(i => i.id !== id); }
   renderCart();
+  const cc = $('#cartCount'); cc.classList.remove('bump'); void cc.offsetWidth; cc.classList.add('bump');
 }
 
-function toast(msg) {
-  const t = $('#toast'); t.textContent = msg; t.classList.add('show');
-  clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('show'), 2200);
+function toast(msg, type = 'ok', action) {
+  const t = $('#toast');
+  t.className = 'show ' + type;
+  t.innerHTML = `<i>${type === 'err' ? '!' : type === 'info' ? 'i' : '✓'}</i><span></span>${action ? `<button type="button">${action.label}</button>` : ''}`;
+  t.querySelector('span').textContent = msg;
+  if (action) t.querySelector('button').onclick = () => { action.fn(); t.classList.remove('show'); };
+  clearTimeout(toast.t);
+  toast.t = setTimeout(() => t.classList.remove('show'), action || type !== 'ok' ? 6500 : 3500);
 }
 const toggleCart = open => document.body.classList.toggle('cart-open', open);
 
 document.addEventListener('click', e => {
   const b = e.target.closest('.add'); if (!b) return;
-  changeQty(+b.dataset.id, 1); toast('Toegevoegd aan winkelwagen');
+  const id = +b.dataset.id, pr = products.find(x => x.id === id);
+  changeQty(id, 1);
+  b.textContent = '✓ Toegevoegd'; b.classList.add('done');
+  setTimeout(() => { b.textContent = 'In winkelwagen'; b.classList.remove('done'); }, 1600);
+  toast(`${pr.name} is toegevoegd aan je winkelwagen.`, 'ok', {label: 'Bekijk', fn: () => toggleCart(true)});
 });
 $('#cartItems').addEventListener('click', e => {
   const b = e.target.closest('button'); if (!b) return;
@@ -647,7 +851,9 @@ $('#cartItems').addEventListener('click', e => {
 });
 $('#cartBtn').onclick = () => toggleCart(true);
 $('#closeCart').onclick = $('#overlay').onclick = () => toggleCart(false);
-$('#checkout').onclick = () => toast(cart.length ? 'Demo: koppel hier je betaalprovider (bijv. Mollie)' : 'Je winkelwagen is leeg');
+$('#checkout').onclick = () => cart.length
+  ? toast('Dit is een demo-webshop: er wordt nog niets afgerekend. Koppel een betaalprovider zoals Mollie om iDEAL-betalingen te ontvangen.', 'info')
+  : toast('Je winkelwagen is leeg. Voeg eerst een schaar toe.', 'err');
 
 /* ---------- Navigatie ---------- */
 const nav = $('#nav'), menu = $('#menu');
@@ -685,16 +891,29 @@ function countUp(el) {
   })(start);
 }
 
+/* ---------- Duidelijke meldingen ---------- */
+function say(el, text, type) { el.className = 'msg ' + type; el.textContent = text; }
+function fieldErr(input, text) {
+  const lab = input.closest('label'); if (!lab) return;
+  lab.querySelector('.ferr')?.remove();
+  if (text) { const m = document.createElement('small'); m.className = 'ferr'; m.textContent = text; lab.appendChild(m); }
+}
+document.addEventListener('input', e => {
+  if (e.target.classList?.contains('bad')) { e.target.classList.remove('bad'); fieldErr(e.target, ''); }
+});
+
 /* ---------- Contactformulier ---------- */
 $('#contactForm')?.addEventListener('submit', e => {
   e.preventDefault();
   const f = e.target, msg = $('#formMsg'); let ok = true;
-  $$('input,textarea', f).forEach(i => {
-    const valid = i.value.trim() && (i.type !== 'email' || /^\S+@\S+\.\S+$/.test(i.value));
-    i.classList.toggle('bad', !valid); if (!valid) ok = false;
-  });
-  msg.textContent = ok ? 'Bedankt! We nemen binnen één werkdag contact met je op.' : 'Controleer de gemarkeerde velden.';
-  if (ok) f.reset(); // Koppel hier een backend/e-mailservice voor echte verzending
+  [[f.naam, v => v.trim(), 'Vul je naam in.'],
+   [f.email, v => /^\S+@\S+\.\S+$/.test(v.trim()), 'Vul een geldig e-mailadres in, bijvoorbeeld naam@voorbeeld.nl.'],
+   [f.bericht, v => v.trim().length >= 5, 'Schrijf een kort bericht (minimaal 5 tekens).']
+  ].forEach(([i, test, m]) => { const good = test(i.value); i.classList.toggle('bad', !good); fieldErr(i, good ? '' : m); if (!good) ok = false; });
+  if (!ok) { say(msg, 'Controleer de gemarkeerde velden en probeer het opnieuw.', 'err'); f.querySelector('.bad')?.focus(); return; }
+  say(msg, `Bedankt, ${f.naam.value.trim()}! Je bericht is verzonden. We reageren binnen één werkdag.`, 'ok');
+  toast('Je bericht is verzonden.', 'ok');
+  f.reset(); // Koppel hier een backend/e-mailservice voor echte verzending
 });
 
 /* ---------- Start ---------- */
@@ -727,11 +946,14 @@ $$('#stars button').forEach(b => b.addEventListener('click', () => {
 $('#reviewForm').addEventListener('submit', e => {
   e.preventDefault();
   const f = e.target, name = f.naam.value.trim(), text = f.tekst.value.trim(), msg = $('#reviewMsg');
-  if (!name || !text || !rating) { msg.textContent = 'Vul je naam, beoordeling en review in.'; return; }
+  [[f.naam, name, 'Vul je naam in.'], [f.tekst, text, 'Schrijf een korte review.']].forEach(([i, v, m]) => { i.classList.toggle('bad', !v); fieldErr(i, v ? '' : m); });
+  if (!name || !text) { say(msg, 'Vul je naam en review in om te plaatsen.', 'err'); return; }
+  if (!rating) { say(msg, 'Kies eerst een aantal sterren (1 tot 5).', 'err'); return; }
   reviews.unshift({name, text, stars: rating});
   try { localStorage.setItem('jaegerReviews', JSON.stringify(reviews)); } catch (err) {}
   f.reset(); rating = 0; $$('#stars button').forEach(x => x.classList.remove('on'));
-  msg.textContent = 'Bedankt voor je review!';
+  say(msg, 'Bedankt voor je review! Hij staat nu in de lijst.', 'ok');
+  toast('Je review is geplaatst.', 'ok');
   renderReviews();
 });
 renderReviews();
@@ -762,6 +984,136 @@ document.addEventListener('mousemove', e => {
 document.addEventListener('mouseout', e => {
   const img = e.target.closest?.('.card .img');
   if (img && !img.contains(e.relatedTarget)) { img.style.setProperty('--tx', 0); img.style.setProperty('--ty', 0); }
+});
+
+/* ---------- Productdetails (snelle weergave) ---------- */
+const modal = document.createElement('div');
+modal.id = 'modal';
+modal.innerHTML = `<div class="m-box" role="dialog" aria-modal="true" aria-labelledby="mTitle"><button class="m-close" aria-label="Sluiten">×</button>
+  <div class="m-img"><svg><use href="#scissors"/></svg></div>
+  <div class="m-info"><small class="eyebrow" id="mCat"></small><h3 id="mTitle"></h3><p id="mDesc"></p><dl id="mSpecs"></dl>
+  <div class="m-row"><b id="mPrice"></b><button class="btn" id="mAdd" type="button">In winkelwagen</button></div></div></div>`;
+document.body.appendChild(modal);
+let current = null;
+function openModal(id) {
+  const p = products.find(x => x.id === id); if (!p) return;
+  current = p;
+  $('#mCat').textContent = p.cat; $('#mTitle').textContent = p.name; $('#mDesc').textContent = p.desc; $('#mPrice').textContent = euro(p.price);
+  $('#mSpecs').innerHTML = [['Staal', 'Japans VG-10, 62 HRC'], ['Afwerking', 'Handgeslepen en handmatig gekeurd'], ['Verzending', 'Gratis'], ['Garantie', 'Scherpte-garantie']]
+    .map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('');
+  modal.classList.add('open');
+}
+const closeModal = () => modal.classList.remove('open');
+modal.addEventListener('click', e => { if (e.target === modal || e.target.closest('.m-close')) closeModal(); });
+$('#mAdd').addEventListener('click', () => {
+  changeQty(current.id, 1); closeModal();
+  toast(`${current.name} is toegevoegd aan je winkelwagen.`, 'ok', {label: 'Bekijk', fn: () => toggleCart(true)});
+});
+document.addEventListener('click', e => {
+  const c = e.target.closest('.card');
+  if (c && e.target.closest('.img, h3')) openModal(+c.dataset.id);
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeModal(); toggleCart(false); }
+  if (e.key === 'Enter' && e.target.matches?.('.card .img')) openModal(+e.target.closest('.card').dataset.id);
+});
+
+/* ---------- Gouden gloed op de producten, magnetische knoppen ---------- */
+document.addEventListener('mousemove', e => {
+  const img = e.target.closest?.('.card .img');
+  if (img) { const r = img.getBoundingClientRect(); img.style.setProperty('--gx', (e.clientX - r.left) + 'px'); img.style.setProperty('--gy', (e.clientY - r.top) + 'px'); }
+  const b = e.target.closest?.('.btn');
+  if (b) { const r = b.getBoundingClientRect(); b.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * .15}px, ${(e.clientY - r.top - r.height / 2) * .3}px)`; }
+});
+document.addEventListener('mouseout', e => {
+  const b = e.target.closest?.('.btn');
+  if (b && !b.contains(e.relatedTarget)) b.style.transform = '';
+});
+
+/* ---------- Cursor-ring ---------- */
+if (matchMedia('(pointer:fine)').matches) {
+  const c = document.createElement('div'); c.id = 'cursor'; document.body.appendChild(c);
+  let x = 0, y = 0, tx = 0, ty = 0;
+  addEventListener('mousemove', e => {
+    tx = e.clientX; ty = e.clientY; c.classList.add('on');
+    c.classList.toggle('hover', !!e.target.closest?.('a, button, input, textarea, .card .img, .card h3'));
+  });
+  document.addEventListener('mouseleave', () => c.classList.remove('on'));
+  (function loop() { x += (tx - x) * .18; y += (ty - y) * .18; c.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`; requestAnimationFrame(loop); })();
+}
+
+/* ---------- Goudstof in de hero ---------- */
+(function () {
+  const hero = $('#home');
+  if (!hero || matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  const cv = document.createElement('canvas'); cv.id = 'dust'; hero.prepend(cv);
+  const ctx = cv.getContext('2d'); let mx = 0, my = 0;
+  const dots = Array.from({length: 55}, () => ({x: Math.random(), y: Math.random(), r: Math.random() * 1.6 + .4, v: Math.random() * .00006 + .00002, a: Math.random() * .5 + .2, p: Math.random() * 6}));
+  hero.addEventListener('mousemove', e => { const r = hero.getBoundingClientRect(); mx = (e.clientX - r.left) / r.width - .5; my = (e.clientY - r.top) / r.height - .5; });
+  (function frame(t) {
+    requestAnimationFrame(frame);
+    if (!hero.offsetParent) return;
+    if (cv.width !== hero.clientWidth || cv.height !== hero.clientHeight) { cv.width = hero.clientWidth; cv.height = hero.clientHeight; }
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    dots.forEach(d => {
+      d.y -= d.v * 16; if (d.y < -.02) { d.y = 1.02; d.x = Math.random(); }
+      ctx.fillStyle = `rgba(214,184,120,${d.a * (.6 + .4 * Math.sin(t / 900 + d.p))})`;
+      ctx.beginPath(); ctx.arc(d.x * cv.width + mx * d.r * 30, d.y * cv.height + my * d.r * 30, d.r, 0, 6.283); ctx.fill();
+    });
+  })(0);
+})();
+
+/* ---------- Cijfers tellen op ---------- */
+const countIO = new IntersectionObserver((list, o) => list.forEach(en => {
+  if (!en.isIntersecting) return;
+  o.unobserve(en.target);
+  const el = en.target, m = el.textContent.match(/^([\d.,]+)(.*)$/); if (!m) return;
+  const dec = (m[1].split(',')[1] || '').length, end = parseFloat(m[1].replace(',', '.')), t0 = performance.now();
+  (function tick(now) {
+    const p = Math.min((now - t0) / 1400, 1);
+    el.textContent = (end * (1 - Math.pow(1 - p, 3))).toFixed(dec).replace('.', ',') + m[2];
+    if (p < 1) requestAnimationFrame(tick);
+  })(t0);
+}), {threshold: .6});
+$$('.mat b').forEach(b => countIO.observe(b));
+
+/* ---------- Keuzehulp: twee vragen, één aanbeveling ---------- */
+(function () {
+  const quiz = $('#quiz'); if (!quiz) return;
+  const steps = [
+    {q: 'Wat knip je het meest?', k: 'type', o: [['Contouren en details', 'detail'], ['Allround knipwerk', 'allround'], ['Textuur en volume', 'textuur']]},
+    {q: 'Met welke hand knip je?', k: 'hand', o: [['Rechtshandig', 'r'], ['Linkshandig', 'l']]}
+  ];
+  let n = 0, ans = {};
+  function render() {
+    if (n < steps.length) {
+      const st = steps[n];
+      quiz.innerHTML = `<div class="qs"><p class="q-step">Vraag ${n + 1} van ${steps.length}</p><h3>${st.q}</h3><div class="q-opts">${st.o.map(([t, v]) => `<button type="button" data-v="${v}">${t}</button>`).join('')}</div></div>`;
+      return;
+    }
+    let id = ({detail: 2, allround: 1, textuur: 4})[ans.type];
+    if (ans.hand === 'l' && ans.type !== 'textuur') id = 6;
+    const pr = products.find(x => x.id === id);
+    const note = ans.hand === 'l' && ans.type === 'textuur' ? '<p class="q-note">Linkshandig? Neem contact met ons op voor advies over linkshandige effileerscharen.</p>' : '';
+    quiz.innerHTML = `<div class="qs"><p class="q-step">Onze aanbeveling voor jou</p><h3>${pr.name}</h3><p>${pr.desc}</p>${note}<div class="q-res"><b>${euro(pr.price)}</b><button class="add q-add" data-id="${pr.id}" type="button">In winkelwagen</button><button class="q-again" type="button">Opnieuw beginnen</button></div></div>`;
+  }
+  quiz.addEventListener('click', e => {
+    const o = e.target.closest('.q-opts button');
+    if (o) { ans[steps[n].k] = o.dataset.v; n++; render(); }
+    if (e.target.closest('.q-again')) { n = 0; ans = {}; render(); }
+  });
+  render();
+})();
+
+/* ---------- Gouden bolletje vliegt naar je winkelwagen ---------- */
+document.addEventListener('click', e => {
+  const from = e.target.closest('.add, #mAdd'); if (!from) return;
+  const a = from.getBoundingClientRect(), b = $('#cartBtn').getBoundingClientRect();
+  const d = document.createElement('i'); d.className = 'fly';
+  d.style.left = (a.left + a.width / 2) + 'px'; d.style.top = (a.top + a.height / 2) + 'px';
+  document.body.appendChild(d);
+  d.animate([{transform: 'translate(0,0) scale(1)', opacity: 1}, {transform: `translate(${b.left + b.width / 2 - a.left - a.width / 2}px, ${b.top + b.height / 2 - a.top - a.height / 2}px) scale(.3)`, opacity: .4}],
+    {duration: 750, easing: 'cubic-bezier(.5,0,.2,1)'}).onfinish = () => d.remove();
 });
 
 /* ---------- Pagina's (alles in één bestand, elke link opent een eigen pagina) ---------- */
